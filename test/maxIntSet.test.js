@@ -3,7 +3,7 @@
 
 const MaxIntSet = require('../src/maxIntSet');
 
-xdescribe('Max Int Set', () => {
+describe('Max Int Set', () => {
   let maxIntSet;
   const maxSize = 5;
 

@@ -5,7 +5,7 @@ const IntSet = require('../src/intSet');
 
 const isEmptyArray = item => item.length === 0 && typeof item === 'object';
 
-xdescribe('Int Set', () => {
+describe('Int Set', () => {
   let intSet;
 
   beforeEach(() => {

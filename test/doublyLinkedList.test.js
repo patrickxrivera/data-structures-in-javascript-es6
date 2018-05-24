@@ -3,7 +3,7 @@
 
 const DoublyLinkedList = require('../src/doublyLinkedList');
 
-xdescribe('Doubly Linked List', () => {
+describe('Doubly Linked List', () => {
   let dll;
 
   beforeEach(() => {

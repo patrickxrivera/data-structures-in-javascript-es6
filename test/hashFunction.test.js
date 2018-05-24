@@ -2,7 +2,7 @@
 
 const getIdxBelowMax = require('../src/hashFunction');
 
-xdescribe('Hash Function', () => {
+describe('Hash Function', () => {
   const testStr = 'hello';
   const testArr = [1, 2, 3];
   const max = 10;

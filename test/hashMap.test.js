@@ -4,7 +4,7 @@
 
 const HashMap = require('../src/hashMap');
 
-xdescribe('Hash Map', () => {
+describe('Hash Map', () => {
   let hashMap;
 
   beforeEach(() => {
