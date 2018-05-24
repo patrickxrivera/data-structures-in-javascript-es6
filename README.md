@@ -21,3 +21,5 @@ cd data-structures-in-javascript-es6
 npm install
 npm run test (or npm run test:watch)
 ```
+
+Skeleton files courtesy of Lambda School's open source curriculum: https://github.com/LambdaSchool
