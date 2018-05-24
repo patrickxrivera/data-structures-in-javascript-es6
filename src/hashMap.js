@@ -18,25 +18,6 @@ class HashMap {
     this.errorMsg = 'Key not in list.';
   }
 
-  _hasReachedCapacity() {
-    const fillPercentage = this.count / this.size;
-    return fillPercentage >= 0.75;
-  }
-
-  _resize() {
-    const newSize = this.size * 2;
-    const oldStore = this.store;
-
-    this.store = Array(newSize).fill([]);
-
-    this._rehash(oldStore);
-  }
-
-  // `TODO`: get rehash working
-  _rehash(oldStore) {
-    this.each(this.set, oldStore);
-  }
-
   set(key, val) {
     const bucket = this._getBucket(key);
 
@@ -78,6 +59,25 @@ class HashMap {
     store.forEach((bucket) => {
       bucket.each(([key, val]) => cb(key, val));
     });
+  }
+
+  _hasReachedCapacity() {
+    const fillPercentage = this.count / this.size;
+    return fillPercentage >= 0.75;
+  }
+
+  _resize() {
+    const newSize = this.size * 2;
+    const oldStore = this.store;
+
+    this.store = Array(newSize).fill([]);
+
+    this._rehash(oldStore);
+  }
+
+  // `TODO`: get rehash working
+  _rehash(oldStore) {
+    this.each(this.set, oldStore);
   }
 
   _getBucket(key) {
