@@ -1,4 +1,4 @@
-# Common Data Structures Implemented in JavaScript/ES6 using TDD
+# Common Data Structures in JavaScript/ES6 using TDD
 
 - [x] Binary Search Tree
 - [x] Doubly Linked List
