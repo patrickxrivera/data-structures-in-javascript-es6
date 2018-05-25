@@ -2,15 +2,13 @@
 class Heap {
   constructor() {
     this.storage = [];
-    this.size = 0;
   }
   // Inserts the given value in the heap
   // Calls bubbleUp in order to put the newly-inserted element in the right place in the heap
   insert(val) {
     this.pushToStorage(val);
-    this.size++;
 
-    if (this.size === 1) return;
+    if (this.getSize() === 1) return;
 
     this.callBubbleUp();
   }
@@ -18,9 +16,11 @@ class Heap {
   // Calls siftDown in order to reorganize the heap with a new max/min
   // In some specifications, this method is also called `poll`
   delete() {
-    console.log(this.storage);
-    this.deleteSwap();
+    const deletedItem = this.deleteSwap();
+
     this.siftDown();
+
+    return deletedItem;
   }
 
   deleteSwap() {
@@ -35,14 +35,16 @@ class Heap {
 
     this.swap(...last, ...first);
 
-    this.storage.pop();
+    return this.storage.pop();
   }
   // Returns the maximum value in the heap in constant time
   getMax() {
     return this.storage[0];
   }
   // Returns the size of the heap
-  getSize() {}
+  getSize() {
+    return this.storage.length;
+  }
   // Returns the storage array
   getStorage() {
     return this.storage;
@@ -71,27 +73,44 @@ class Heap {
   // If the larger of the child elements is larger than the parent, the child element is swapped with the parent
   // This method is only used by the heap itself in order to maintain the heap property
   siftDown(currIdx = 0) {
+    // console.log(this.storage);
     const currValue = this.getValueAt(currIdx);
     const curr = [currIdx, currValue];
 
-    const leftChildIdx = currIdx + 1;
+    const leftChildIdx = currIdx * 2 + 1;
     const leftChildValue = this.getValueAt(leftChildIdx);
     const left = [leftChildIdx, leftChildValue];
 
-    const rightChildIdx = currIdx + 2;
+    const rightChildIdx = currIdx * 2 + 2;
     const rightChildValue = this.getValueAt(rightChildIdx);
     const right = [rightChildIdx, rightChildValue];
 
+    // console.log({ currValue, leftChildValue, rightChildValue });
+
     switch (true) {
-      case currValue < leftChildValue && currValue < rightChildValue:
       case currValue < leftChildValue && currValue >= rightChildValue:
+      case currValue < leftChildValue && rightChildValue === undefined:
         this.swap(...left, ...curr);
         this.siftDown(leftChildIdx);
         return;
+
       case currValue >= leftChildValue && currValue < rightChildValue:
+      case currValue < rightChildValue && leftChildValue === undefined:
         this.swap(...right, ...curr);
         this.siftDown(rightChildIdx);
         return;
+
+      case currValue < leftChildValue && currValue < rightChildValue:
+        if (leftChildValue > rightChildValue) {
+          this.swap(...left, ...curr);
+          this.siftDown(leftChildIdx);
+          return;
+        }
+
+        this.swap(...right, ...curr);
+        this.siftDown(rightChildIdx);
+        return;
+
       default:
         return;
     }
@@ -121,7 +140,7 @@ class Heap {
   }
 
   getLastIdx() {
-    return this.size - 1;
+    return this.storage.length - 1;
   }
 
   getLastValue() {
