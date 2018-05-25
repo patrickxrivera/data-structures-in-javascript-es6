@@ -81,7 +81,7 @@ describe('Graph', () => {
     expect(array).toEqual([1, 2, 5, 4, 3]);
   });
 
-  it.only('should traverse the graph breadth first', () => {
+  it('should traverse the graph breadth first', () => {
     const array = [];
     const foo = value => array.push(value);
     const one = graph.addVertex(1);
