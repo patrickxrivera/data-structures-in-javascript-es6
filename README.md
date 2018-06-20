@@ -13,7 +13,7 @@
 - [x] Stack
 - [x] Tree
 
-How to run test suite in terminal:
+## Running the test suite:
 
 ```
 git clone https://github.com/pxr13/data-structures-in-javascript-es6.git
